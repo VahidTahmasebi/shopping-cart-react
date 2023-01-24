@@ -1,11 +1,19 @@
 import Layout from "../Layout/Layout";
+import { useCart, useCartActions } from "../Providers/CartProvider";
+import { ADD_TO_CART } from "../Providers/cartTypes";
 import * as data from "../server/data";
 
-const addProductHandler = (product) => {
-  console.log(product);
-};
-
 const HomePage = () => {
+  const dispatch = useCartActions();
+  const { cart } = useCart();
+
+  // product button handler
+  const addProductHandler = (product) => {
+    console.log(product);
+
+    dispatch({ type: ADD_TO_CART, payload: product });
+  };
+
   return (
     <Layout>
       <main className='container'>
