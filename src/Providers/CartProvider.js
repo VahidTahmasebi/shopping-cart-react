@@ -3,6 +3,7 @@ import { createContext, useContext, useReducer } from "react";
 const CartContext = createContext();
 const CartContextDispatcher = createContext();
 
+// base state
 const initialState = {
   cart: [],
   total: 0,
@@ -22,5 +23,6 @@ const CartProvider = ({ children }) => {
 
 export default CartProvider;
 
+// cart context export
 export const useCart = () => useContext(CartContext);
 export const useCartActions = () => useContext(CartContextDispatcher);
