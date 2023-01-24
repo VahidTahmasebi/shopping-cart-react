@@ -1,5 +1,6 @@
-import { ADD_TO_CART } from "./cartTypes";
+import { ADD_TO_CART, REMOVE_PRODUCT } from "./cartTypes";
 
+// increasing product function
 const addProductToCart = (state, payload) => {
   // clone context data
   const updatedCart = [...state.cart];
@@ -27,11 +28,41 @@ const addProductToCart = (state, payload) => {
     cart: updatedCart,
   };
 };
+// diminishing product function
+const removeProductFromCart = (state, payload) => {
+  // clone context data
+  const updatedCart = [...state.cart];
+  //   get the item index
+  const updatedItemIndex = updatedCart.findIndex(
+    (item) => item.id === payload.id,
+  );
+  // clone is product
+  const updatedItem = { ...updatedCart[updatedItemIndex] };
+  //   if the balance is equal to one
+  if (updatedItem.quantity === 1) {
+    const filterCart = updatedCart.filter((item) => item.id !== payload.id);
+    return {
+      ...state,
+      cart: filterCart,
+    };
+  } else {
+    updatedItem.quantity--;
+    updatedCart[updatedItemIndex] = updatedItem;
+  }
+  return {
+    ...state,
+    cart: updatedCart,
+  };
+};
 
+// passing values to reducer
 const cartReducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       return addProductToCart(state, action.payload);
+    }
+    case REMOVE_PRODUCT: {
+      return removeProductFromCart(state, action.payload);
     }
     default:
       return state;
