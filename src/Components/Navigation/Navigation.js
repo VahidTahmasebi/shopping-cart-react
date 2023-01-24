@@ -28,7 +28,7 @@ const Navigation = () => {
             <NavLink
               to='signup'
               className={(active) => (active.isActive ? "activeLink" : "")}>
-              cart
+              signup
             </NavLink>
           </li>
         </ul>

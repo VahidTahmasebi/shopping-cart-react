@@ -1,6 +1,6 @@
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../Providers/CartProvider";
-
+import "./cartPage.css";
 const CartPage = () => {
   const { cart, total } = useCart();
   const dispatch = useCartActions();
@@ -8,10 +8,10 @@ const CartPage = () => {
     <Layout>
       <main className='container'>
         <section className='cartCenter'>
-          <section className='cardItemList'>
+          <section className='cartItemList'>
             {cart.map((item) => {
               return (
-                <div className='cardItem' key={item.id}>
+                <div className='cartItem' key={item.id}>
                   <div className='itemImg'>
                     <img src={item.image} alt={item.name} />
                   </div>
@@ -19,7 +19,7 @@ const CartPage = () => {
                   <div>{item.offPrice * item.quantity}</div>
                   <div className='btnGroup'>
                     <button>-</button>
-                    <p>{item.quantity}</p>
+                    <button>{item.quantity}</button>
                     <button>+</button>
                   </div>
                 </div>
