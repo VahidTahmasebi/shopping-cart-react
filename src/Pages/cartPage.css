@@ -1,0 +1,54 @@
+.cartCenter {
+  width: 90vw;
+  max-width: 1170px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.cartItemList {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-wrap: wrap;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.cartItem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+.cartItem div {
+  width: 100px;
+}
+.cartItem .itemImg {
+  height: 100px;
+}
+.cartItem .itemImg img {
+  width: 100%;
+  height: auto;
+}
+.btnGroup button {
+  padding: 5px 10px;
+  border: 1px solid #6d28d9;
+  outline: none;
+  color: #6d28d9;
+  background-color: #fff;
+  cursor: pointer;
+}
+.btnGroup button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+.btnGroup button:nth-child(2) {
+  border-left: 0;
+  border-right: 0;
+  cursor: default;
+}
+.btnGroup button:last-child {
+  border-radius: 0 5px 5px 0;
+}
