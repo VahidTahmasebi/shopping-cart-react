@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../Providers/CartProvider";
 import { ADD_TO_CART, REMOVE_PRODUCT } from "../Providers/cartTypes";
@@ -7,6 +8,20 @@ const CartPage = () => {
   const { cart, total } = useCart();
   const dispatch = useCartActions();
 
+  // if the shopping cart is empty
+  if (!cart.length) {
+    return (
+      <Layout>
+        <main>
+          <h2>cart is empty!</h2>
+          <hr />
+          <Link to='/'>Go to shopping</Link>
+        </main>
+      </Layout>
+    );
+  }
+
+  // add product quantity reduction operations
   const decHandler = (cartItem) => {
     dispatch({ type: REMOVE_PRODUCT, payload: cartItem });
   };
@@ -36,6 +51,7 @@ const CartPage = () => {
               );
             })}
           </section>
+          <CartCast total={total} cart={cart} />
         </section>
       </main>
     </Layout>
@@ -43,3 +59,35 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+// Cart cast box
+const CartCast = ({ total, cart }) => {
+  const originalTotalPrice = cart.length
+    ? cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
+    : 0;
+
+  return (
+    <section className='cartCast'>
+      <h2>cart cast</h2>
+      <div className='CastItem'>
+        <p>original Total Price</p>
+        <p>{originalTotalPrice} $</p>
+      </div>
+      <div className='CastItem'>
+        <p>cart discount</p>
+        <p>{originalTotalPrice - total} $</p>
+      </div>
+      <div className='CastItem'>
+        <p>net price</p>
+        <p>{total} $</p>
+      </div>
+      <Link to='checkout'>
+        <button
+          className='btn primary'
+          style={{ marginTop: "20px 0", width: "100%" }}>
+          Go to checkout
+        </button>
+      </Link>
+    </section>
+  );
+};
