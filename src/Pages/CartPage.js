@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../Providers/CartProvider";
-import { ADD_TO_CART, REMOVE_PRODUCT } from "../Providers/cartTypes";
+import { ADD_TO_CART, REMOVE_PRODUCT } from "../Providers/types";
 import "./cartPage.css";
 
 const CartPage = () => {

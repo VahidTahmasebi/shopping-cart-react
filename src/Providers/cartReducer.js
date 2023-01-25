@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_PRODUCT } from "./cartTypes";
+import { ADD_TO_CART, REMOVE_PRODUCT } from "./types";
 
 // increasing product function
 const addProductToCart = (state, payload) => {

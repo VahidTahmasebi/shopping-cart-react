@@ -1,6 +1,6 @@
 import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../Providers/CartProvider";
-import { ADD_TO_CART } from "../Providers/cartTypes";
+import { ADD_TO_CART } from "../Providers/types";
 import * as data from "../server/data";
 
 const HomePage = () => {
