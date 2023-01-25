@@ -1,8 +1,7 @@
-import "../form.css";
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "../../common/Input";
+import "../form.css";
 
 const initialValues = {
   name: "",
