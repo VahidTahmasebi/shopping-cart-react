@@ -25,6 +25,10 @@
 }
 .cartItem div {
   width: 100px;
+  text-align: center;
+}
+.cartItem div:nth-child(2) {
+  width: 200px;
 }
 .cartItem .itemImg {
   height: 100px;
@@ -32,6 +36,29 @@
 .cartItem .itemImg img {
   width: 100%;
   height: auto;
+}
+.cartCost {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.cartCost h2 {
+  margin-bottom: 30px;
+}
+.costItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.costItem:last-of-type {
+  padding-top: 3px;
+  border-top: 1px solid #ccc;
 }
 .btnGroup button {
   padding: 5px 10px;
@@ -45,6 +72,7 @@
   border-radius: 5px 0 0 5px;
 }
 .btnGroup button:nth-child(2) {
+  width: 40px;
   border-left: 0;
   border-right: 0;
   cursor: default;

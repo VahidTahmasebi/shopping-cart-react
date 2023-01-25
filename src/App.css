@@ -7,6 +7,9 @@
 body {
   background-color: #f6f6f6;
 }
+.App {
+  text-align: center;
+}
 .productList {
   width: 90vw;
   max-width: 1170px;
