@@ -70,7 +70,7 @@ const CartCast = ({ total, cart }) => {
     <section className='cartCast'>
       <h2>cart cast</h2>
       <div className='CastItem'>
-        <p>original Total Price</p>
+        <p>original total price</p>
         <p>{originalTotalPrice} $</p>
       </div>
       <div className='CastItem'>
