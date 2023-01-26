@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Input from "../../common/Input";
 import { useQuery } from "../../hooks/useQuery";
-import { useAuthActions } from "../../Providers/AuthProvider";
+import { useAuth, useAuthActions } from "../../Providers/AuthProvider";
 import { signupUser } from "../../services/signupService";
 import "../form.css";
 
@@ -34,6 +34,8 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "passwords must match"),
 });
 const SignupForm = () => {
+  const setAuth = useAuthActions();
+
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -41,7 +43,16 @@ const SignupForm = () => {
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
 
+  const auth = useAuth();
+
+  // check if the user is logged in
+  useEffect(() => {
+    if (auth) navigate(redirect);
+  }, [redirect, auth]);
+
+  // form button operators
   const onSubmit = async (values) => {
+    // get the required data from the form
     const { name, email, phoneNumber, password } = values;
     const userData = {
       name,
@@ -52,7 +63,7 @@ const SignupForm = () => {
     try {
       // passing data to the server
       const { data } = await signupUser(userData);
-      console.log(data);
+      setAuth(data);
       // clear state error
       setError(null);
 
