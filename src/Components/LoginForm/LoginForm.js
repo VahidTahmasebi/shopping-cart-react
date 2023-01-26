@@ -1,6 +1,8 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
 import Input from "../../common/Input";
+import { loginUser } from "../../services/loginServices";
 import "../form.css";
 
 const initialValues = {
@@ -17,10 +19,24 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const [error, setError] = useState(null);
+
   const onSubmit = async (values) => {
     try {
-    } catch (error) {}
+      // passing data to the server
+      const { data } = await loginUser(values);
+      console.log(data);
+      // clear state error
+      setError(null);
+    } catch (error) {
+      // if there was an error
+      if (error.response && error.response.data.message) {
+        console.log(error.response.data.message);
+        setError(error.response.data.message);
+      }
+    }
   };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -45,6 +61,7 @@ const LoginForm = () => {
           className='btn primary'>
           login
         </button>
+        {error && <p>{error}</p>}
       </form>
     </div>
   );
