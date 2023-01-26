@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
 import { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Input from "../../common/Input";
+import { useQuery } from "../../hooks/useQuery";
 import { useAuthActions } from "../../Providers/AuthProvider";
 import { signupUser } from "../../services/signupService";
 import "../form.css";
@@ -33,6 +35,12 @@ const validationSchema = Yup.object({
 });
 const SignupForm = () => {
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  const query = useQuery();
+  const redirect = query.get("redirect") || "/";
+
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;
     const userData = {
@@ -47,6 +55,8 @@ const SignupForm = () => {
       console.log(data);
       // clear state error
       setError(null);
+
+      navigate(redirect);
     } catch (error) {
       console.log(error.response.data.message);
       // if there was an error
@@ -94,6 +104,9 @@ const SignupForm = () => {
           Signup
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
+        <Link to={`/login?redirect=${redirect}`}>
+          <p style={{ marginTop: "15px" }}>Already login ?</p>
+        </Link>
       </form>
     </div>
   );
