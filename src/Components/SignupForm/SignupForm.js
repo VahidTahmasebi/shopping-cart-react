@@ -33,6 +33,7 @@ const validationSchema = Yup.object({
     .required("password confirmation is required")
     .oneOf([Yup.ref("password"), null], "passwords must match"),
 });
+
 const SignupForm = () => {
   const setAuth = useAuthActions();
 
@@ -60,6 +61,7 @@ const SignupForm = () => {
       phoneNumber,
       password,
     };
+
     try {
       // passing data to the server
       const { data } = await signupUser(userData);
@@ -73,7 +75,6 @@ const SignupForm = () => {
 
       navigate(redirect);
     } catch (error) {
-      console.log(error.response.data.message);
       // if there was an error
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
