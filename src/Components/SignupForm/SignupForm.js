@@ -64,6 +64,10 @@ const SignupForm = () => {
       // passing data to the server
       const { data } = await signupUser(userData);
       setAuth(data);
+
+      // send data to local storage
+      localStorage.setItem("authState", JSON.stringify(data));
+
       // clear state error
       setError(null);
 

@@ -44,6 +44,9 @@ const LoginForm = () => {
       // passing data to the server
       const { data } = await loginUser(values);
       setAuth(data);
+
+      localStorage.setItem("authState", JSON.stringify(data));
+
       // clear state error
       setError(null);
 
