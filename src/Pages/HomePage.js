@@ -2,6 +2,7 @@ import Layout from "../Layout/Layout";
 import { useCart, useCartActions } from "../Providers/CartProvider";
 import { ADD_TO_CART } from "../Providers/types";
 import * as data from "../server/data";
+import { checkInCart } from "../utils/checkInCart";
 
 const HomePage = () => {
   const dispatch = useCartActions();
@@ -20,7 +21,7 @@ const HomePage = () => {
         <section className='productList'>
           {data.products.map((product) => {
             return (
-              <section className='product'>
+              <section className='product' key={product.id}>
                 <div className='productImg'>
                   <img src={product.image} alt={product.name} />
                 </div>
@@ -30,7 +31,7 @@ const HomePage = () => {
                   <button
                     onClick={() => addProductHandler(product)}
                     className='btn primary'>
-                    Add to cart
+                    {checkInCart(cart, product) ? "In cart" : "Add to cart"}
                   </button>
                 </div>
               </section>
