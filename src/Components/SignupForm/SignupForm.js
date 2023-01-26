@@ -1,6 +1,9 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
 import Input from "../../common/Input";
+import { useAuthActions } from "../../Providers/AuthProvider";
+import { signupUser } from "../../services/signupService";
 import "../form.css";
 
 const initialValues = {
@@ -29,8 +32,28 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "passwords must match"),
 });
 const SignupForm = () => {
+  const [error, setError] = useState(null);
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;
+    const userData = {
+      name,
+      email,
+      phoneNumber,
+      password,
+    };
+    try {
+      // passing data to the server
+      const { data } = await signupUser(userData);
+      console.log(data);
+      // clear state error
+      setError(null);
+    } catch (error) {
+      console.log(error.response.data.message);
+      // if there was an error
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
   };
 
   const formik = useFormik({
@@ -70,6 +93,7 @@ const SignupForm = () => {
           className='btn primary'>
           Signup
         </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
     </div>
   );
