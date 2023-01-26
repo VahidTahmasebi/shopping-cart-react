@@ -1,11 +1,19 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  font-family: "Roboto";
 }
 body {
   background-color: #f6f6f6;
+}
+button:disabled {
+  color: #444;
+  background-color: #ccc;
+  cursor: pointer;
 }
 .App {
   text-align: center;
