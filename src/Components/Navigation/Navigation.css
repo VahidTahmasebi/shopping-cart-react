@@ -35,3 +35,20 @@
   color: #6d28d9;
   background-color: #fff;
 }
+.cartLink {
+  position: relative;
+}
+.mainNavigation span {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #ede9fe;
+  background-color: #6d28d9;
+}
