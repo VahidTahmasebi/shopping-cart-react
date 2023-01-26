@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../Providers/AuthProvider";
 import "./Navigation.css";
 
 const Navigation = () => {
+  const userData = useAuth();
   return (
     <header className='mainNavigation'>
       <nav>
@@ -26,9 +28,9 @@ const Navigation = () => {
           </li>
           <li>
             <NavLink
-              to='signup'
+              to={userData ? "/profile" : "/login"}
               className={(active) => (active.isActive ? "activeLink" : "")}>
-              signup
+              {userData ? "profile" : "Login/Signup"}
             </NavLink>
           </li>
         </ul>
