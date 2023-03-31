@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  margin-bottom: 25px;
 }
-
 .cartItemList {
   display: flex;
   flex-direction: column;
@@ -38,15 +38,15 @@
   height: auto;
 }
 .cartCast {
-  width: 30%;
   display: flex;
   flex-direction: column;
-  margin-left: 3rem;
+  margin-right: 3rem;
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
   text-align: left;
+  margin-bottom: 10px;
 }
 .cartCast h2 {
   margin-bottom: 30px;
@@ -80,4 +80,15 @@
 }
 .btnGroup button:last-child {
   border-radius: 0 5px 5px 0;
+}
+@media screen and (min-width: 576px) {
+  .m-w-576 {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 860px) {
+  .m-w-860 {
+    width: 100%;
+    flex-direction: column;
+  }
 }

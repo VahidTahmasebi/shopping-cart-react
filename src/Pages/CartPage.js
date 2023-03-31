@@ -32,7 +32,8 @@ const CartPage = () => {
   return (
     <Layout>
       <main className='container'>
-        <section className='cartCenter'>
+        <section className='cartCenter m-w-860'>
+          <CartCast total={total} cart={cart} />
           <section className='cartItemList'>
             {cart.map((item) => {
               return (
@@ -51,7 +52,6 @@ const CartPage = () => {
               );
             })}
           </section>
-          <CartCast total={total} cart={cart} />
         </section>
       </main>
     </Layout>
@@ -67,7 +67,7 @@ const CartCast = ({ total, cart }) => {
     : 0;
 
   return (
-    <section className='cartCast'>
+    <section className='cartCast m-w-576 m-w-860'>
       <h2>cart cast</h2>
       <div className='CastItem'>
         <p>original total price</p>
