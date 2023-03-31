@@ -40,6 +40,7 @@ const LoginForm = () => {
 
   // form button operators
   const onSubmit = async (values) => {
+    console.log(values);
     try {
       // passing data to the server
       const { data } = await loginUser(values);
